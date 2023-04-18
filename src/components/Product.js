@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Skeleton from 'react-loading-skeleton'
-
+import { useAuth } from './Auth'
 import { Link, NavLink} from 'react-router-dom'
 
 
@@ -11,7 +11,7 @@ const Url="https://fakestoreapi.com/products"
     const [filterr,setFilter]=useState(data)
     const [laoding,setLoading]=useState(false)
     var compountMounted=true;
-
+const {user}=useAuth()
 
     const fetchuser=async (url)=>{
 
@@ -85,8 +85,8 @@ const Showdata=()=>{
   <div className="card-body">
     <h5 className="card-title mb-0">{title.substring(0,12)}</h5>
     <p className="card-text lead fw-bold">${price}</p>
-    <Link to={`/product1/${id}`} className="btn btn-outline-dark">Buy Now </Link>
-  
+   
+  {user ?(  <Link to={`/product1/${id}`} className="btn btn-outline-dark">Buy Now </Link>):(  <Link to='/login' className="btn btn-outline-dark">Buy Now </Link>)}
   </div>
 </div>
 

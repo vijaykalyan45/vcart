@@ -3,20 +3,23 @@ import { useSelector,useDispatch } from 'react-redux'
 import handlecart from '../redux/reducer/handlecart';
 import { addcart1 } from '../redux/action';
 import { delCart } from '../redux/action';
-
+import { useAuth } from './Auth';
 
 const Cart = () => {
 
   const product=useSelector((state)=>state.handlecart)
  
   const dispatch=useDispatch();
-
+const {user}=useAuth()
 
   const addProduct=(product)=>{
 dispatch(addcart1(product))
 
   }
-  
+  console.log(product.length);
+  if(product.length==0){
+    return <h4 style={{marginLeft:500,marginTop:200}}>There are  No Items</h4>
+  }
   
   const handleButtond = (product) => {
 dispatch(delCart(product))
@@ -25,7 +28,8 @@ dispatch(delCart(product))
   
   return (
     <div>
-      <ul>
+
+       <ul>
 {
   product.map((product)=>{
     return <li>
@@ -47,6 +51,7 @@ dispatch(delCart(product))
 <button className='btn btn-outline-dark me-4'  onClick={()=>addProduct(product)}>
   <i className='fa fa-plus'></i>
 </button>
+<button className='btn btn-outline-dark me-4'><h6>Buy Now</h6></button>
 </div>
 
       </div>
@@ -57,6 +62,7 @@ dispatch(delCart(product))
 
 }
 </ul>
+    
 
     </div>
   )

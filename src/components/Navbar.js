@@ -2,12 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import handlecart from "../redux/reducer/handlecart";
+import { useAuth } from "./Auth";
+
 
 const Navbar = () => {
+  const {user,logout}=useAuth();
+ 
 const state=useSelector((state)=>state.handlecart)
 
   return (
-    <div>
+    <div className="lk">
       <nav className="navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm">
         <div className="container">
           <Link className="navbar-brand fw-bold fs-4" href="#" to="/">
@@ -51,13 +55,16 @@ const state=useSelector((state)=>state.handlecart)
              
             </ul>
             <div className="buttons"> 
-           <Link href="" className="btn btn-outline-dark" to="/login"><i className="fa fa-sharp fa-sign-in me-1"></i>login</Link>
+            {user ?(<Link className="btn btn-outline-dark" to="/"  onClick={logout}><i className="bi bi-box-arrow-left"></i>Logout</Link>):(<Link className="btn btn-outline-dark" to="/login"><i className="fa fa-sharp fa-sign-in me-1"></i>login</Link>)}
+        
            <Link href="" className="btn btn-outline-dark" to="/register"><i className="fa  fa-user-plus me-1"></i>Register</Link>
-           <Link href="" className="btn btn-outline-dark" to="/cart"><i className="fa  fa-shopping-cart me-1"></i>Cart({state.length})</Link>
+           {user ?(<Link className="btn btn-outline-dark" to="/cart"><i className="fa  fa-shopping-cart me-1"></i>Cart({state.length})</Link>):(  <Link href="" className="btn btn-outline-dark" to="/login"><i className="fa  fa-shopping-cart me-1"></i>Cart({state.length})</Link>)}
+          
 
             
             </div>
-            
+            {user ?(
+            <h4>Vijay</h4>):(<></>)}
           </div>
         </div>
       </nav>

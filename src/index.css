@@ -19,6 +19,7 @@ code {
   margin-left: 330px;
   font-weight: 500;
 font-size: 19px;
+
 }
 .ra{
  
@@ -93,4 +94,23 @@ top: 50px;
              width: 675px;
              margin-left: 280px;
           
+}
+.dl{
+
+  margin-left: 270px;
+}
+.side{
+  display: flex;
+  height: 600px;
+  width: 160px;
+  align-items: self-start;
+  flex-direction: column;
+  list-style: none;
+ margin-top: -780px;
+ margin-left: 40px;
+
+
+}
+.buttons{
+  margin-right: 40px;
 }
